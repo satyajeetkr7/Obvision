@@ -1,2 +1,32 @@
-# Obvision
-Online photo sharing sites and social networks have them in the billions. The field of vision research has been dominated by machine learning and statistics. Images and videos are used to detect, classify, and track objects or events in order to” understand” a real-world scene. Programming a computer and designing algorithms for understanding what is in these images is the field of computer vision. Computer vision powers applications like image search, robot navigation, medical image analysis, photo management and many more. From a computer vision point of view, the image is a scene consisting of objects of interest and a background represented by everything else in the image. The relations and interactions among these objects are the key factors for scene understanding. Object recognition identifies the object class in the training database, to which the object belongs to. Object detection determines the presence of an object and/or its scope, and locations in the image. It can be treated as a two-class object recognition, where one class represents the object class and another class represents non-object class. It can be further divided into soft detection, which only detects the presence of an object, and hard detection, which detects both the presence and location of the object.
+# Object-Detector-App
+
+A real-time object recognition application using [Google's TensorFlow Object Detection API](https://github.com/tensorflow/models/tree/master/research/object_detection) and [OpenCV](http://opencv.org/).
+
+## Getting Started
+1. `conda env create -f environment.yml`
+2. `python object_detection_app.py`
+    Optional arguments (default value):
+    * Device index of the camera `--source=0`
+    * Width of the frames in the video stream `--width=480`
+    * Height of the frames in the video stream `--height=360`
+    * Number of workers `--num-workers=2`
+    * Size of the queue `--queue-size=5`
+
+## Tests
+```
+pytest -vs utils/
+```
+
+## Requirements
+- [Anaconda / Python 3.5](https://www.continuum.io/downloads)
+- [TensorFlow 1.2](https://www.tensorflow.org/)
+- [OpenCV 3.0](http://opencv.org/)
+
+## Notes
+- OpenCV 3.1 might crash on OSX after a while, so that's why I had to switch to version 3.0. See open issue and solution [here](https://github.com/opencv/opencv/issues/5874).
+- Moving the `.read()` part of the video stream in a multiple child processes did not work. However, it was possible to move it to a separate thread.
+
+## Copyright
+
+See [LICENSE](LICENSE) for details.
+Copyright (c) 2017 [Dat Tran](http://www.dat-tran.com/).
